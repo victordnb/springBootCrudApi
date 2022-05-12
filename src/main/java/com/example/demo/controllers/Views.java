@@ -36,9 +36,15 @@ public class Views {
 
     // 3º definimos nuestra segunda ruta:
     @GetMapping("/find/{id}")
-    public String find(@PathVariable int id) {
+    public Contacto find(@PathVariable int id) {
         this.locate(id);
-        return "Buscamos el id: " + id;
+        if(position == 0){
+            return null;
+        }else{
+            Contacto contacto = Views.database.get(position);
+            position = -1;
+            return contacto;
+        }
     }
 
     // 4º definimos las siguentes rutas:
